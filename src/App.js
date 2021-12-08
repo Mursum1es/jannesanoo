@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import quotes from './quotes.json';
 import effects from './effects.json';
 import mestari2 from './mestari2.png';
@@ -12,7 +11,7 @@ function App() {
   const speech = new Speech() // will throw an exception if not browser supported
 
   if(speech.hasBrowserSupport()) { // returns a boolean
-      console.log("speech synthesis supported")
+      console.log("speech synthesis supported!")
   }
 
   var data = JSON.parse(JSON.stringify(quotes));
@@ -24,16 +23,11 @@ function App() {
 
   var randomPos = Math.floor(Math.random() * 4) + 1;
 
-
-  console.log("Random: " + random);
   speech.init({
     'volume': 1,
     'rate': 0.5,
     'pitch': 0.3
   }).then((data) => {
-    console.log("Speech is ready, voices are available", data)
-    console.log("Quote: " + randomQuote);
-    console.log(randomEffect);
     var audio = new Audio(kauhu);
     audio.loop = true;
     audio.play();
@@ -41,7 +35,6 @@ function App() {
       text: randomQuote,
       queue: false
     }).then(() => {
-        console.log("Success !")
     }).catch(e => {
         console.error("An error occurred :", e)
     })
